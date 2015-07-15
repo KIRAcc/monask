@@ -12,7 +12,7 @@
 }
 
 #menu_wrapper {
-	background-color: white ;
+	background-color: white;
 	border:0 none gray;
 }
 
@@ -23,12 +23,12 @@
 }
 #mainA_wrapper {
         height:100%;
-	background-color: #DCDCDC;
+	background-color:whitesmoke;
 	/*border-top: 1px solid gray;*/
 }
 
 #footer {
-	background-color: #DCDCDC;
+	background-color: #86CE86;
 	padding:5px;
 	border-top: 1px inset gray;
 }
