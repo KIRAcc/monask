@@ -11,12 +11,18 @@ jQuery.askmona = {
         Array.prototype.push.apply(list, json.topics);
         if(json.topics.length === 1000)get(off+1000,callback);  else callback(list);
       });
-    };  get(0);
-
+    }; get(0);
   },
   responses:function(opts,callback){
     opts.to=1000;
     jQuery.getJSON(this.endpoint+'responses/list?callback=?',opts,callback);
+  },
+  authKey:function(appS,userS){
+    var nonce = window.nonce(30);
+    var time = window.time();
+    var hashObj = new jsSHA("SHA-256","TEXT",1);
+    hashObj.update(appS+nonce+time+userS);
+    return {key:hashObj.getHash("B64"),nonce:nonce,time:time};
   },
   unixtime:function(str){
     var objDate = new Date(str * 1000);
@@ -36,4 +42,14 @@ jQuery.askmona = {
     rtnValue = year + '/' + month + '/' + date + ' ' + hours + ':' + minutes + ':' + seconds;
     return rtnValue;
 }
+};
+
+window.time = function(){return Math.floor( new Date().getTime() / 1000 )};
+window.nonce = function(length) {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for(var i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
 };
