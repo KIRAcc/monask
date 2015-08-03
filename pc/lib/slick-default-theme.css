@@ -13,7 +13,7 @@ classes should alter those!
 }
 
 .slick-header-column {
-  background: url('images/header-columns-bg.gif') repeat-x center bottom  !important;
+  /*background: url('images/header-columns-bg.gif') repeat-x center bottom  !important;*/
   border-right: 1px solid silver;
 }
 

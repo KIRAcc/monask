@@ -202,6 +202,7 @@ CSF.main = function(restartFunc,removeFunc){
 				CSF.menuWidth = jQuery(CSF.menuId).outerWidth(true);
 				//change the width of "main" element, and its left position.
 				jQuery(CSF.mainId).width(CSF.browserWidth-CSF.menuWidth).css("left",CSF.menuWidth);
+                                grid.resizeCanvas();
 			}
 		});
 		jQuery(CSF.resizer2Id).resizable({
@@ -248,11 +249,11 @@ CSF.main = function(restartFunc,removeFunc){
 			var n = jQuery(CSF.resizerId).attr('scrollHeight');
 			return (m > n) ? m : n ;
 		}()));
-		jQuery(CSF.resizer2Id).width((function(){
+		/*jQuery(CSF.resizer2Id).width((function(){
 			var m = jQuery(CSF.mainAId).width();
 			var n = jQuery(CSF.resizer2Id).attr('scrollWidth');
 			return (m > n) ? m : n ;
-		}()));
+		}()));*/
 
 		//Make a hyperlink to a print page.
 		if (jQuery(CSF.csfPrintCls).size() > 0){
