@@ -13,16 +13,21 @@ jQuery.askmona = {
       });
     }; get(0);
   },
-  responses:function(opts,callback){
+  responses:function(authInfo,callback){
     opts.to=1000;
     jQuery.getJSON(this.endpoint+'responses/list?callback=?',opts,callback);
   },
-  authKey:function(appS,userS){
+  verify:function(authInfo,callback){
+    jQuery.post(this.endpoint+'auth/verify',
+      jQuery.askmona.authKey(authInfo),callback,"json"
+      );
+  },
+  authKey:function(info){
     var nonce = window.nonce(30);
     var time = window.time();
     var hashObj = new jsSHA("SHA-256","TEXT",1);
-    hashObj.update(appS+nonce+time+userS);
-    return {key:hashObj.getHash("B64"),nonce:nonce,time:time};
+    hashObj.update(info.app_secretkey+nonce+time+info.secretkey);
+    return {auth_key:hashObj.getHash("B64"),nonce:nonce,time:time,app_id:info.app_id,u_id:info.u_id};
   },
   unixtime:function(str){
     var objDate = new Date(str * 1000);
