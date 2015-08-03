@@ -13,7 +13,7 @@ jQuery.askmona = {
       });
     }; get(0);
   },
-  responses:function(authInfo,callback){
+  responses:function(opts,callback){
     opts.to=1000;
     jQuery.getJSON(this.endpoint+'responses/list?callback=?',opts,callback);
   },
